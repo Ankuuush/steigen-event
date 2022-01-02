@@ -36,7 +36,7 @@ router.post('/createuser',  async (req, res) => {
     const {PName,USN,Phone,Sex,Branch,Sem,Email,Password}=req.body;
     const salt = await bcrypt.genSaltSync(10);
     const secPass = await bcrypt.hash(Password, salt);
-    let sql=`Insert into participants values ('${PName}','${USN}',${Phone},'${Sex}','${Branch}',${Sem},'${Email}','${secPass}')`
+    let sql=`Insert into participants values ('${PName}','${USN}',${Phone},'${Sex}','${Branch}',${Sem},'${Email}','${secPass},'P')`
     try{
         db.query(sql, (err,result)=>{
            if(err){

@@ -8,12 +8,14 @@ db.connect((err)=>{
 var cors = require('cors')
 var app = express()
 
+
 app.use(cors())
 const port = 5000
 app.use(express.json())
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/events', require('./routes/events'))
 app.use('/api/result', require('./routes/result'))
+app.use('/api/report', require('./routes/report'))
 app.use('/api/', require('./routes/participated_by'))
 
 

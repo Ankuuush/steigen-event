@@ -3,11 +3,11 @@ const db=require('../db')
 const fetchuser=require('../middleware/fetchuser')
 const router = express.Router();
 
-// Create the result using /createresult api. Login req
-router.post("/createresult",fetchuser,async (req,res)=>{
+// Create the report using /createreport api. Login req
+router.post("/createreport",fetchuser,async (req,res)=>{
     try{
-        const {E_ID,USN,Marks}=req.body
-        let sql=`insert into result values('${USN}',${E_ID},${Marks},'${req.user.id}');`
+        const {E_ID, Report}=req.body;
+        let sql=`insert into report values(${E_ID},'${Report}','${req.user.id}');`
         db.query(sql,async (err,result)=>{
             if(err){
                 console.log(err)
@@ -21,10 +21,9 @@ router.post("/createresult",fetchuser,async (req,res)=>{
       }
 })
 
-
-// Fetch all result using /getresult api. Login req
-router.get('/getresult',fetchuser,async (req,res)=>{
-    let sql='Select * from result'
+// Fetch all reports using /getreport api. Login req
+router.get('/getreport',fetchuser,async (req,res)=>{
+    let sql='Select * from report'
     try{
      db.query(sql, (err,result)=>{
         if(err){

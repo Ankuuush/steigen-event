@@ -36,3 +36,35 @@
     transform: rotate(360deg);
   }
 }
+
+footer{
+  background-color: #111;
+  color: white;
+  text-align: center;
+  padding: 2.5em 0;
+  font-size: 1em;
+}
+footer div{
+  color: inherit;
+  text-decoration: none;
+}
+.footer__link{
+  font-weight: bold;
+}
+.social__list{
+  margin-top: .8em;
+}
+.social-list__link+.social-list__link{
+  margin-left: 1em;
+}
+.footer__link:hover,
+.social-list__link:hover{
+  opacity: .7;
+}
+.footer__link:hover{
+  text-decoration: underline;
+}
+
+
+
+
