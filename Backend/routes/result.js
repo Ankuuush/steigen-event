@@ -24,7 +24,7 @@ router.post("/createresult",fetchuser,async (req,res)=>{
 
 // Fetch all result using /getresult api. Login req
 router.get('/getresult',fetchuser,async (req,res)=>{
-    let sql='Select * from result'
+    let sql='Select * from result order by E_ID desc,Marks desc'
     try{
      db.query(sql, (err,result)=>{
         if(err){

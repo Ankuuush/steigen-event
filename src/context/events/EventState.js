@@ -38,6 +38,17 @@ const EventState = (props) => {
             SSN:"1234567890",
             Status:1,
             Description:"I am don"
+        },
+        {
+            E_ID:8,
+            EName:"webinar",
+            Location:"Bokaro",
+            Time:"18:40:00",
+            Date:"2019-09-10",
+            SUSN:"1234567809",
+            SSN:"1234567890",
+            Status:1,
+            Description:"Mai hu don ka bhai john ka papa kon??"
         }
     ]
     const yourDate = new Date()
