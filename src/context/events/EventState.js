@@ -4,61 +4,33 @@ import eventContext from './EventContext'
 
 
 const EventState = (props) => {
-
-    const initialEvent=[
-        {
-            E_ID:5,
-            EName:"Ankush",
-            Location:"Bokaro",
-            Time:"18:40:00",
-            Date:"2023-10-17",
-            SUSN:"1234567809",
-            SSN:"1234567890",
-            Status:0,
-            Description:"I am don"
-        },
-        {
-            E_ID:6,
-            EName:"Party",
-            Location:"Bokaro",
-            Time:"18:40:00",
-            Date:"2019-09-10",
-            SUSN:"1234567809",
-            SSN:"1234567890",
-            Status:1,
-            Description:"I am don"
-        },
-        {
-            E_ID:7,
-            EName:"Cricket",
-            Location:"Bokaro",
-            Time:"18:40:00",
-            Date:"2022-04-20",
-            SUSN:"1234567809",
-            SSN:"1234567890",
-            Status:1,
-            Description:"I am don"
-        },
-        {
-            E_ID:8,
-            EName:"webinar",
-            Location:"Bokaro",
-            Time:"18:40:00",
-            Date:"2019-09-10",
-            SUSN:"1234567809",
-            SSN:"1234567890",
-            Status:1,
-            Description:"Mai hu don ka bhai john ka papa kon??"
-        }
-    ]
+    const host="http://localhost:5000"
+    const initialEvent=[]
+    const [event, setEvent] = useState(initialEvent)
     const yourDate = new Date()
     const NewDate = moment(yourDate).format('YYYY-MM-DD')
-    const [event, setEvent] = useState(initialEvent)
+   
     const upcomingInitial=event.filter((ev)=>NewDate<=ev.Date)
     const [upcoming, setUpcoming] = useState(upcomingInitial)
     const pastInitial=event.filter((ev)=>NewDate>ev.Date)
     const [past, setPast] = useState(pastInitial)
 
+    const getEvents =async () =>  {
+    //    console.log("token is" + localStorage.getItem('token'))
+    
+        const response = await fetch(`${host}/api/events/getall`, {
+          method: 'GET', 
+           headers: {
+            'Content-Type': 'application/json',
+            "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMUFZMTlJUzAxMiJ9LCJpYXQiOjE2NDE0NjM5NjN9.veMOavhPxl18I1sTaqPAVf_ZszjHbOFy97bce8ow-Dg"
+          },
+        });
+        const json= await response.json();
+        setEvent(json)
+        setUp(json)
+       
+      }
+    
     const register=(USN,E_ID)=>{
         console.log(USN+" "+E_ID)
 
@@ -68,14 +40,33 @@ const EventState = (props) => {
         setEvent(newEvent)
         const newUpcoming=newEvent.filter((ev)=>NewDate<=ev.Date)
         setUpcoming(newUpcoming)
+        const newPast=newEvent.filter((ev)=>NewDate>ev.Date)
+        setPast(newPast)
     }
 
-    const deleteEvent=(id)=>{
+    const deleteEvent= async(id)=>{
+
+        const response = await fetch(`${host}/api/events/deleteevent/${id}`, {
+            method: 'DELETE', 
+             headers: {
+              'Content-Type': 'application/json',
+              "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMUFZMTlJUzAxMiJ9LCJpYXQiOjE2NDE0NjM5NjN9.veMOavhPxl18I1sTaqPAVf_ZszjHbOFy97bce8ow-Dg"
+            },
+          });
+          const json= await response.json();
         const newEvent=event.filter((ev)=>ev.E_ID!==id)
         setUp(newEvent)
     }
 
-    const editEvent=async (id,EName,Description,Location,Time,Date)=>{
+    const editEvent=async (id,EName,Description,Location,Time,Date,SUSN)=>{
+        const response = await fetch(`${host}/api/events/editevent/${id}`, {
+            method: 'PUT', 
+             headers: {
+              'Content-Type': 'application/json',
+              "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMTIzNDU2Nzg5MCJ9LCJpYXQiOjE2NDE0ODkzMjV9.c8wb4lsqTUYX_vbyxmChNjZCozRHP3h0-3zkqZzpaMU"
+            },
+            body:JSON.stringify({EName,Description,Location,Time,Date,SUSN})
+          });
         let newEvent=await JSON.parse(JSON.stringify(event))
         for (let index = 0; index < newEvent.length; index++) {
             const element = newEvent[index];
@@ -92,7 +83,7 @@ const EventState = (props) => {
     }
 
     return (
-        <eventContext.Provider value={{ upcoming, past,register,deleteEvent,editEvent}}>
+        <eventContext.Provider value={{ upcoming, past,register,deleteEvent,editEvent,getEvents}}>
         {props.children}
       </eventContext.Provider>
     )

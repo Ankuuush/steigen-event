@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 // Fetch all events using '/getall' api. Login req
 router.get('/getall',fetchuser,async (req,res)=>{
   //TODO: use regex to match faculty and update status to 1
-    let sql='Select * from events where status ='
+    let sql='Select * from events where status =1'
     try{
      db.query(sql, (err,result)=>{
         if(err){
@@ -50,10 +50,10 @@ router.post('/addevent',fetchuser,async(req,res)=>{
 // Update event using /editevent:id api. Login req
 router.put('/editevent/:id',fetchuser,async(req,res)=>{
     try{
-    const {EName,Location,Time,Date,SUSN,Description}=req.body;
+    const {EName,Location,Time,Date,Description,SUSN}=req.body;
     let Status=0;
     //TODO: use regex to match faculty SSN and update status to 1 
-    let sql=`update events set EName='${EName}', Location='${Location}',Time='${Time}',Date='${Date}',SUSN=${SUSN},SSN=${req.user.id},Status=${Status},Description='${Description}'
+    let sql=`update events set EName='${EName}', Location='${Location}',Time='${Time}',Date='${Date}',SUSN='${SUSN}',SSN=${req.user.id},Status=${Status},Description='${Description}'
     where E_ID=${req.params.id}`
     db.query(sql,(err,result)=>{
         if(err)
@@ -71,7 +71,7 @@ router.put('/editevent/:id',fetchuser,async(req,res)=>{
 });
 
 // Delete event using /deleteevent:id api. Login req
-router.delete('/deleteevent/:id',async (req,res)=>{
+router.delete('/deleteevent/:id',fetchuser,async (req,res)=>{
     try{
     let sql=`delete from events where E_ID=${req.params.id}`
     db.query(sql,(err,result)=>{
