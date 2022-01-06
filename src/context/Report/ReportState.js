@@ -18,8 +18,8 @@ const ReportState = (props) => {
     const getReport= (id)=>{
         console.log(id)
         let newReport=[]
-        for (let index = 0; index < reports.length; index++) {
-            const element = reports[index];
+        for (let index = 0; index < reportInitial.length; index++) {
+            const element = reportInitial[index];
             if(element.E_ID===id){
             newReport.push(element)
             break;}
