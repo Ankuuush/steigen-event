@@ -1,4 +1,5 @@
 import React, { useContext, useEffect  } from 'react'
+import { useNavigate } from 'react-router-dom'
 import eventContext from '../context/events/EventContext'
 import EventItem from './EventItem'
 
@@ -7,8 +8,12 @@ const Events = (props) => {
     const {upcoming,past,getEvents} =context
     const {showAlert}=props
     // console.log(upcoming)
+    let navigate=useNavigate();
     useEffect(() => {
+        if(localStorage.getItem('token'))
         getEvents()
+        else
+        navigate('/login');
     }, [])
     return (
         <div className='container my-3'>

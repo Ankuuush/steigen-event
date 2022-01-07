@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const About = () => {
+    let navigate=useNavigate();
+    useEffect(() => {
+        if(!localStorage.getItem('token'))
+        navigate('/login');
+    }, [])
     return (
         <div className='container my-3'>
             <h2 style={{display:"flex",justifyContent:"center"}}>About Us</h2>

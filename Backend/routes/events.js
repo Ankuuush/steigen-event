@@ -5,6 +5,7 @@ const { body, validationResult } = require("express-validator");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 
+
 // Fetch all events using '/getall' api. Login req
 router.get('/getall',fetchuser,async (req,res)=>{
   //TODO: use regex to match faculty and update status to 1

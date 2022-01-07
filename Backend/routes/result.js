@@ -24,7 +24,26 @@ router.post("/createresult",fetchuser,async (req,res)=>{
 
 // Fetch all result using /getresult api. Login req
 router.get('/getresult',fetchuser,async (req,res)=>{
-    let sql='Select * from result order by E_ID desc,Marks desc'
+    let sql='Select PName,Branch,Sem,EName,Marks,E_ID,USN from result join participants using(USN) join events using(E_ID) order by E_ID desc, marks desc;'
+    try{
+     db.query(sql, (err,result)=>{
+        if(err){
+          console.log(err)
+          return res.status(500).send("Internal server error");    
+        }  
+        res.send(result);
+    })
+} catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal server error");
+  }
+});
+
+
+
+router.get('/getspecificresult/:id',fetchuser,async (req,res)=>{
+
+    let sql=`Select PName,Branch,Sem,EName,Marks,E_ID,USN from result join participants using(USN) join events using(E_ID) where E_ID=${req.params.id} order by marks desc;`
     try{
      db.query(sql, (err,result)=>{
         if(err){

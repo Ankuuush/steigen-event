@@ -31,8 +31,18 @@ const EventState = (props) => {
        
       }
     
-    const register=(USN,E_ID)=>{
-        console.log(USN+" "+E_ID)
+    const register=async(E_ID)=>{
+
+      const response = await fetch(`${host}/api/participatedby`, {
+        method: 'POST', 
+         headers: {
+          'Content-Type': 'application/json',
+          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMUFZMTlJUzAxMiJ9LCJpYXQiOjE2NDE0NjM5NjN9.veMOavhPxl18I1sTaqPAVf_ZszjHbOFy97bce8ow-Dg"
+        },
+        body:JSON.stringify({E_ID})
+      });
+      const json= await response.json();
+        console.log(json.USN+" "+E_ID)
 
     }
 

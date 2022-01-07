@@ -37,9 +37,8 @@ const Login = (props) => {
     
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email address</label>
-                        <input type="email" className="form-control" id="email" onChange={onChange} value={credentials.email} name="email" aria-describedby="emailHelp" />
-                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                        <label htmlFor="text" className="form-label">USN</label>
+                        <input type="USN" className="form-control" id="USN" onChange={onChange} value={credentials.email} name="USN" aria-describedby="emailHelp" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>

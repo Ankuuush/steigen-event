@@ -4,115 +4,38 @@ import resultContext from './ResultContext'
 
 
 const ResultState = (props) => {
-    
-    const resultInitial=[
-        {
-            USN:"1AY19IS012",
-            E_ID:6,
-            Marks:105,
-            EName:"Party",
-            PName:"Ankush",
-            Branch:"ISE",
-            Sem:5,
-            SSN:"1234567890"
-        },
-        {
-            USN:"1AY19IS011",
-            E_ID:6,
-            Marks:95,
-            EName:"Party",
-            PName:"Aniket",
-            Branch:"ISE",
-            Sem:5,
-            SSN:"1234567890"
-        },
-        {
-            USN:"1AY19IS018",
-            E_ID:6,
-            Marks:90,
-            EName:"Party",
-            PName:"Ashutosh",
-            Branch:"ISE",
-            Sem:5,
-            SSN:"1234567890"
-        },
-        {
-            USN:"1AY19IS013",
-            E_ID:10,
-            Marks:87,
-            EName:"Football",
-            PName:"Anshu",
-            Branch:"ISE",
-            Sem:5,
-            SSN:"1234567890"
-        },
-        {
-            USN:"1AY19IS026",
-            E_ID:10,
-            Marks:72,
-            EName:"Football",
-            PName:"Deepak",
-            Branch:"ISE",
-            Sem:5,
-            SSN:"1234567890"
-        },
-        {
-            USN:"1AY19IS053",
-            E_ID:10,
-            Marks:72,
-            EName:"Football",
-            PName:"Monish",
-            Branch:"ISE",
-            Sem:5,
-            SSN:"1234567890"
-        },
-        {
-            USN:"1AY19IS013",
-            E_ID:10,
-            Marks:87,
-            EName:"Contest",
-            PName:"Anshu",
-            Branch:"ISE",
-            Sem:5,
-            SSN:"1234567890"
-        },
-        {
-            USN:"1AY19IS026",
-            E_ID:10,
-            Marks:72,
-            EName:"Contest",
-            PName:"Deepak",
-            Branch:"ISE",
-            Sem:5,
-            SSN:"1234567890"
-        },
-        {
-            USN:"1AY19IS053",
-            E_ID:10,
-            Marks:72,
-            EName:"Contest",
-            PName:"Monish",
-            Branch:"ISE",
-            Sem:5,
-            SSN:"1234567890"
-        }
-    ]
+    const host="http://localhost:5000"
+    let resultInitial=[]
+    const [results, setResults] = useState([])
 
-   
-    const [results, setResults] = useState(resultInitial)
+    const getresults=async()=>{
+        const response = await fetch(`${host}/api/result/getresult`, {
+            method: 'GET', 
+             headers: {
+              'Content-Type': 'application/json',
+              "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMUFZMTlJUzAxMiJ9LCJpYXQiOjE2NDE0NjM5NjN9.veMOavhPxl18I1sTaqPAVf_ZszjHbOFy97bce8ow-Dg"
+            },
+          });
+          const json= await response.json();
+          setResults(json)
+    }
 
-    const getSpecificResult=(id)=>{
-        let newResult=[]
-        for (let index = 0; index < results.length; index++) {
-            const element = results[index];
-            if(element.E_ID===id)
-            newResult.push(element)
-        }
-        setResults(newResult)
+    const getSpecificResult=async(id)=>{
+
+        const response = await fetch(`${host}/api/result/getspecificresult/${id}`, {
+            method: 'GET', 
+             headers: {
+              'Content-Type': 'application/json',
+              "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMUFZMTlJUzAxMiJ9LCJpYXQiOjE2NDE0NjM5NjN9.veMOavhPxl18I1sTaqPAVf_ZszjHbOFy97bce8ow-Dg"
+            },
+          });
+          const json= await response.json();
+          setResults(json)
+       
     }
 
     return (
-        <resultContext.Provider value={{results,getSpecificResult}}>
+        <resultContext.Provider value={{results,getSpecificResult,getresults}}>
             {props.children}
         </resultContext.Provider>
 

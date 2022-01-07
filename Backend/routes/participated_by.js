@@ -14,7 +14,7 @@ router.post("/participatedby",fetchuser,(req,res)=>{
             console.log(err)
             return res.status(500).send("Internal server error");    
         }
-        res.send(result)
+        res.send({USN:req.user.id})
     })
   }  catch (error) {
     console.error(error.message);

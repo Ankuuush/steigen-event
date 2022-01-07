@@ -1,15 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-
 const Home = () => {
-
-    // let navigate=useNavigate();
-    // useEffect(() => {
-    //     if(localStorage.getItem('token'))
-    //     getNotes()
-    //     else{
-    //     navigate('/login');}
-    // }, [])
+    let navigate=useNavigate();
+    useEffect(() => {
+        if(!localStorage.getItem('token'))
+        navigate('/login');
+    }, [])
     return (
         <>
         <img src="https://www.admissioninbangalore.in/wp-content/uploads/2019/08/ait-1200x675.jpg" style={{ height: "500px", width:"100vw" }} />

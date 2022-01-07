@@ -22,8 +22,8 @@ router.post("/createreport",fetchuser,async (req,res)=>{
 })
 
 // Fetch all reports using /getreport api. Login req
-router.get('/getreport',fetchuser,async (req,res)=>{
-    let sql='Select * from report'
+router.get('/getreport/:id',fetchuser,async (req,res)=>{
+    let sql=`Select * from report where E_ID=${req.params.id}`
     try{
      db.query(sql, (err,result)=>{
         if(err){

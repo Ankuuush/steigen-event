@@ -2,30 +2,25 @@ import React, { useState } from 'react'
 import resultContext from './ReportContext'
 
 const ReportState = (props) => {
+
     const reportInitial=[
         {
-            E_ID:6,
-            report:"This is the report. Just read it!!!",
-            USN:"123456789"
-        },{
-            E_ID:8,
-            report:"This is the 8th report. Just read it!!!",
-            USN:"123456789"
+            E_ID: null, Report: '', USN: ''
         }
     ]
     const [reports, setReport] = useState(reportInitial)
+    const host="http://localhost:5000"
+    const getReport= async(id)=>{
 
-    const getReport= (id)=>{
-        console.log(id)
-        let newReport=[]
-        for (let index = 0; index < reportInitial.length; index++) {
-            const element = reportInitial[index];
-            if(element.E_ID===id){
-            newReport.push(element)
-            break;}
-        }
-        console.log(newReport)
-        setReport(newReport)
+        const response = await fetch(`${host}/api/report/getreport/${id}`, {
+            method: 'GET', 
+             headers: {
+              'Content-Type': 'application/json',
+              "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMTIzNDU2NzgwOSJ9LCJpYXQiOjE2NDA4NjQwMjl9.RSI-7dUkDe7Pm4M8u_lBqBQ5y6jBQ3H69f2OxTE9kFc"
+            },
+          });
+          const json= await response.json();
+          setReport(json)
     }
 
     

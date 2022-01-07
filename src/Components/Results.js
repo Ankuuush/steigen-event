@@ -1,10 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import resultContext from '../context/Result/ResultContext'
 import ResultEvent from './ResultEvent'
 
 const Results = () => {
+ 
   const context = useContext(resultContext)
-  const {results}=context
+  const {results,getresults}=context
+  let navigate=useNavigate();
+    useEffect(() => {
+        if(localStorage.getItem('token') && results.length===0)
+        getresults()
+        else
+        navigate('/login');
+    }, [])
+
   var resultarr = Array.from(Array(results.length/3), () => new Array(3));
   
   for (let index = 0; index < results.length; index++){

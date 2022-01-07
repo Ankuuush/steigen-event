@@ -14,13 +14,22 @@ import Results from './Components/Results';
 import ReportState from './context/Report/ReportState';
 import Report from './Components/Report';
 import Alert from './Components/Alert';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import About from './Components/About';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
+import Axios from 'axios'
 
 function App() {
   const [alert, setalert] = useState(null)
+  const [role, setRole] = useState('')
+  // useEffect(() => {
+  //   Axios.get("http://localhost:5000/api/auth/login").then((response)=>{
+  //     if(response.data.loggedIn == true){
+  //       setRole(response.data.user[0].UserType)
+  //     }
+  //   })
+  // }, [])
 
   const showAlert=(message,type)=>{
     setalert({

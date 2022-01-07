@@ -60,7 +60,7 @@ router.post('/createuser',  async (req, res) => {
 
 
 // Login an existing participant using /login api.
-router.post('/loginparticipant',async (req,res)=>{
+router.post('/login',async (req,res)=>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({success, errors: errors.array() });
