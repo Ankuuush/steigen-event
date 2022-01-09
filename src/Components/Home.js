@@ -4,7 +4,7 @@ const Home = () => {
     let navigate=useNavigate();
     useEffect(() => {
         if(!localStorage.getItem('token'))
-        navigate('/login');
+        navigate('/role');
     }, [])
     return (
         <>

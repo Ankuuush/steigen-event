@@ -12,7 +12,7 @@ const Results = () => {
         if(localStorage.getItem('token') && results.length===0)
         getresults()
         else
-        navigate('/login');
+        navigate('/role');
     }, [])
 
   var resultarr = Array.from(Array(results.length/3), () => new Array(3));

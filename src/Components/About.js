@@ -5,7 +5,7 @@ const About = () => {
     let navigate=useNavigate();
     useEffect(() => {
         if(!localStorage.getItem('token'))
-        navigate('/login');
+        navigate('/role');
     }, [])
     return (
         <div className='container my-3'>

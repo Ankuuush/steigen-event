@@ -13,7 +13,7 @@ const Events = (props) => {
         if(localStorage.getItem('token'))
         getEvents()
         else
-        navigate('/login');
+        navigate('/role');
     }, [])
     return (
         <div className='container my-3'>

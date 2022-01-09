@@ -16,13 +16,15 @@ import Report from './Components/Report';
 import Alert from './Components/Alert';
 import { useEffect, useState } from 'react';
 import About from './Components/About';
-import Login from './Components/Login';
+import LoginType from './Components/LoginType';
 import Signup from './Components/Signup';
 import Axios from 'axios'
+import Login from './Components/Login';
+import LoginState from './context/LoginState';
 
 function App() {
   const [alert, setalert] = useState(null)
-  const [role, setRole] = useState('')
+ 
   // useEffect(() => {
   //   Axios.get("http://localhost:5000/api/auth/login").then((response)=>{
   //     if(response.data.loggedIn == true){
@@ -30,7 +32,10 @@ function App() {
   //     }
   //   })
   // }, [])
-
+  // let roleFunc=(r)=>{}
+  // useEffect(() => {
+    
+  // }, [])
   const showAlert=(message,type)=>{
     setalert({
       msg:message,
@@ -44,6 +49,7 @@ function App() {
     <EventState>
       <ResultState>
         <ReportState>
+          <LoginState>
       <Router>
         <Navbar />
         <Alert  alert={alert} />
@@ -53,11 +59,13 @@ function App() {
           <Route exact path="/Results" element={<Results />} />
           <Route exact path="/Report" element={<Report />} />
           <Route exact path="/About" element={<About />} />
-          <Route exact path="/login" element={<Login showAlert={showAlert}/>}/>
+          <Route exact path="/role" element={<LoginType />}/>
+          <Route exact path="/signin" element={<Login showAlert={showAlert}/>} />
       <Route exact path="/signup" element={<Signup showAlert={showAlert}/>}/>
         </Routes>
         <Footer />
       </Router>
+      </LoginState>
       </ReportState>
       </ResultState>
       </EventState>
