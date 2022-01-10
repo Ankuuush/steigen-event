@@ -1,12 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import eventContext from '../context/events/EventContext'
-import loginContext from '../context/Login/LoginContext'
 
 const AddEvent = (props) => {
     const context = useContext(eventContext)
-    const logincontext = useContext(loginContext)
     const { addEvent } = context
-    const {role}=logincontext
     const [event, setEvent] = useState({EName:"",Location:"",Date:"",Time:"",Description:""})
     const handleClick=(e)=>{
         e.preventDefault();
@@ -19,8 +16,8 @@ const AddEvent = (props) => {
         setEvent({...event,[e.target.name]:e.target.value})
     }
     
-    return (<>
-        {role==='SC'?
+    return (
+        
         <div>
             <form>
                 <h2>Create an Event</h2>
@@ -47,7 +44,7 @@ const AddEvent = (props) => {
                 </div></div>
                 <button disabled={event.EName.length<5 || event.Description.length<5 || event.Location.length<1 } type="submit" className="btn btn-primary" onClick={handleClick}>Submit</button>
             </form>
-        </div>:<></>}</>
+        </div>
     )
 }
 

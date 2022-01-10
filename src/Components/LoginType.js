@@ -1,25 +1,22 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import loginContext from '../context/Login/LoginContext';
 
 
-const LoginType = (props) => {
-    const context = useContext(loginContext)
-    const {roleFunc,idFunc}=context
+const LoginType = () => {
     const navigate=useNavigate();
     const handleFaculty=()=>{
-        roleFunc("F")
-        idFunc("SSN")
+        localStorage.setItem('role','F')
+        localStorage.setItem('id','SSN')
         navigate("/signin")
     }
     const handleParticipants=()=>{
-        roleFunc("P")
-        idFunc("USN")
+        localStorage.setItem('role','P')
+        localStorage.setItem('id','USN')
         navigate("/signin")
     }
     const handleSC=()=>{
-        roleFunc("SC")
-        idFunc("USN")
+        localStorage.setItem('role','SC')
+        localStorage.setItem('id','USN')
         navigate("/signin")
     }
     return (

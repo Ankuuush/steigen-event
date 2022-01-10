@@ -22,7 +22,6 @@ import LoginState from './context/Login/LoginState';
 import Login from './Components/Login';
 
 function App() {
-
  
   const [alert, setalert] = useState(null)
   const showAlert=(message,type)=>{

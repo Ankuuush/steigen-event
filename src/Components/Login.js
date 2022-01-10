@@ -1,14 +1,11 @@
-import React,{useContext, useEffect, useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
-import loginContext from '../context/Login/LoginContext';
 
 
 const Login = (props) => {
-    const context = useContext(loginContext)
-    const {role,id}=context
     let navigate =useNavigate();
     useEffect(() => {
-        if(!role)
+        if(!localStorage.getItem('role'))
         navigate("/role")
     }, [])
         const [credentials, setCredentials] = useState({id:"",Password:""})
@@ -21,7 +18,7 @@ const Login = (props) => {
                 headers: {
                     'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({[id]:credentials.id,Password:credentials.Password,UserType:role})
+                    body: JSON.stringify({[localStorage.getItem('id')]:credentials.id,Password:credentials.Password,UserType:localStorage.getItem('role')})
             });
             const json = await response.json();
             console.log(json)
@@ -46,7 +43,7 @@ const Login = (props) => {
     
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <label htmlFor="text" className="form-label">{id}</label>
+                        <label htmlFor="text" className="form-label">{localStorage.getItem('id')}</label>
                         <input type="id" className="form-control" id="id" onChange={onChange} value={credentials.id} name="id" aria-describedby="emailHelp" />
                     </div>
                     <div className="mb-3">
