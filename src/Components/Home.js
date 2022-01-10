@@ -8,7 +8,7 @@ const Home = () => {
     }, [])
     return (
         <>
-        <img src="https://www.admissioninbangalore.in/wp-content/uploads/2019/08/ait-1200x675.jpg" style={{ height: "500px", width:"100vw" }} />
+        <img src="https://www.admissioninbangalore.in/wp-content/uploads/2019/08/ait-1200x675.jpg" style={{ height: "500px", display:"absolute", width:"100%" }} />
         <div className="container" style={{marginTop:"3rem"}}>
     
             <h1 className='my-2'>What We Organize</h1>

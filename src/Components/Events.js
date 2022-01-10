@@ -1,13 +1,13 @@
 import React, { useContext, useEffect  } from 'react'
 import { useNavigate } from 'react-router-dom'
 import eventContext from '../context/events/EventContext'
+import AddEvent from './AddEvent'
 import EventItem from './EventItem'
 
 const Events = (props) => {
-    const context = useContext(eventContext)    
-    const {upcoming,past,getEvents} =context
+    const eventcontext = useContext(eventContext)    
+    const {upcoming,past,getEvents} =eventcontext
     const {showAlert}=props
-    // console.log(upcoming)
     let navigate=useNavigate();
     useEffect(() => {
         if(localStorage.getItem('token'))
@@ -16,8 +16,10 @@ const Events = (props) => {
         navigate('/role');
     }, [])
     return (
+        
         <div className='container my-3'>
-            <h2>Upcoming Events</h2>
+            <AddEvent showAlert={showAlert}/>
+            <h2 className='my-3'>Upcoming Events</h2>
             {upcoming.length>0?upcoming.map((USEvent)=>{
                 return <EventItem text="Register" showAlert={showAlert} report="" key={USEvent.E_ID} USEvent={USEvent} />
             }):<p>No upcoming events</p>}

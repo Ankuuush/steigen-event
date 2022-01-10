@@ -14,28 +14,17 @@ import Results from './Components/Results';
 import ReportState from './context/Report/ReportState';
 import Report from './Components/Report';
 import Alert from './Components/Alert';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import About from './Components/About';
 import LoginType from './Components/LoginType';
 import Signup from './Components/Signup';
-import Axios from 'axios'
+import LoginState from './context/Login/LoginState';
 import Login from './Components/Login';
-import LoginState from './context/LoginState';
 
 function App() {
-  const [alert, setalert] = useState(null)
+
  
-  // useEffect(() => {
-  //   Axios.get("http://localhost:5000/api/auth/login").then((response)=>{
-  //     if(response.data.loggedIn == true){
-  //       setRole(response.data.user[0].UserType)
-  //     }
-  //   })
-  // }, [])
-  // let roleFunc=(r)=>{}
-  // useEffect(() => {
-    
-  // }, [])
+  const [alert, setalert] = useState(null)
   const showAlert=(message,type)=>{
     setalert({
       msg:message,

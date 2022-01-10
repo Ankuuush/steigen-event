@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
+import loginContext from '../context/Login/LoginContext';
 
 const Navbar = () => {
+  const context = useContext(loginContext)
+  const {role}=context
   const navigate=useNavigate();
   const handleLogout=()=>{
     localStorage.removeItem("token")
@@ -35,7 +37,7 @@ const Navbar = () => {
 
             {!localStorage.getItem("token")?<form className='d-flex'>
               <Link className="btn btn-primary mx-1" to="/role" role="button">Login</Link>
-              <Link className="btn btn-primary mx-1" to="/signup" role="button">Signup</Link>
+              {role==='P'?<Link className="btn btn-primary mx-1" to="/signup" role="button">Signup</Link>:<></>}
             </form>:<button onClick={handleLogout} className='btn btn-primary'>Logout</button>}
           </div>
         </div>

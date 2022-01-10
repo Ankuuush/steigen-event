@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import eventContext from './EventContext'
 
 
+
 const EventState = (props) => {
     const host="http://localhost:5000"
     const initialEvent=[]
@@ -14,6 +15,23 @@ const EventState = (props) => {
     const [upcoming, setUpcoming] = useState(upcomingInitial)
     const pastInitial=event.filter((ev)=>NewDate>ev.Date)
     const [past, setPast] = useState(pastInitial)
+
+    const addEvent=async (EName,Location,Date,Time,Description) =>  {
+
+      Date= moment(Date).format('YYYY-MM-DD')
+      console.log(Date)
+
+      const response = await fetch(`${host}/api/events/addevent`, {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+          "auth-token": localStorage.getItem("token")
+        },
+        body: JSON.stringify({EName,Location,Time,Date,Description})
+      });
+      const json= await response.json();
+      setEvent(event.concat(json))
+    }
 
     const getEvents =async () =>  {
     //    console.log("token is" + localStorage.getItem('token'))
@@ -93,7 +111,7 @@ const EventState = (props) => {
     }
 
     return (
-        <eventContext.Provider value={{ upcoming, past,register,deleteEvent,editEvent,getEvents}}>
+        <eventContext.Provider value={{addEvent, upcoming, past,register,deleteEvent,editEvent,getEvents}}>
         {props.children}
       </eventContext.Provider>
     )
