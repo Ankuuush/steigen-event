@@ -16,7 +16,7 @@ const ReportState = (props) => {
             method: 'GET', 
              headers: {
               'Content-Type': 'application/json',
-              "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMTIzNDU2NzgwOSJ9LCJpYXQiOjE2NDA4NjQwMjl9.RSI-7dUkDe7Pm4M8u_lBqBQ5y6jBQ3H69f2OxTE9kFc"
+              "auth-token": localStorage.getItem("token")
             },
           });
           const json= await response.json();

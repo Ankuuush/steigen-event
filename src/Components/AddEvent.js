@@ -33,7 +33,7 @@ const AddEvent = (props) => {
                     <label htmlFor="Location" className="form-label">Location</label>
                     <input type="text" className="form-control" id="Location" name="Location" value={event.Location} onChange={onChange} required />
                 </div> <div style={{display:"flex"}}>
-                <div className="mb-3 mr-2">
+                <div className="mb-3" style={{marginRight:"5em"}}>
                     <label htmlFor="Date" className="form-label">Date</label>
                     <input type="date" className="form-control" id="Date" name="Date" value={event.Date} onChange={onChange} required />
                     

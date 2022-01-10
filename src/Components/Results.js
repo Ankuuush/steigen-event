@@ -11,7 +11,7 @@ const Results = () => {
     useEffect(() => {
         if(localStorage.getItem('token') && results.length===0)
         getresults()
-        else
+        else if(!localStorage.getItem('token'))
         navigate('/role');
     }, [])
 

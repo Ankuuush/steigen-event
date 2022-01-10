@@ -5,7 +5,6 @@ import resultContext from './ResultContext'
 
 const ResultState = (props) => {
     const host="http://localhost:5000"
-    let resultInitial=[]
     const [results, setResults] = useState([])
 
     const getresults=async()=>{
@@ -13,7 +12,7 @@ const ResultState = (props) => {
             method: 'GET', 
              headers: {
               'Content-Type': 'application/json',
-              "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMUFZMTlJUzAxMiJ9LCJpYXQiOjE2NDE0NjM5NjN9.veMOavhPxl18I1sTaqPAVf_ZszjHbOFy97bce8ow-Dg"
+              "auth-token": localStorage.getItem("token")
             },
           });
           const json= await response.json();
@@ -26,7 +25,7 @@ const ResultState = (props) => {
             method: 'GET', 
              headers: {
               'Content-Type': 'application/json',
-              "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMUFZMTlJUzAxMiJ9LCJpYXQiOjE2NDE0NjM5NjN9.veMOavhPxl18I1sTaqPAVf_ZszjHbOFy97bce8ow-Dg"
+              "auth-token": localStorage.getItem("token")
             },
           });
           const json= await response.json();
