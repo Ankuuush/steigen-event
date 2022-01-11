@@ -2,7 +2,8 @@ import React, { useContext, useEffect  } from 'react'
 import { useNavigate } from 'react-router-dom'
 import eventContext from '../context/events/EventContext'
 import AddEvent from './AddEvent'
-import EventItem from './EventItem'
+import PastEvents from './PastEvents'
+import UpcomingEvents from './UpcomingEvents'
 
 const Events = (props) => {
     const eventcontext = useContext(eventContext)    
@@ -21,11 +22,11 @@ const Events = (props) => {
            {localStorage.getItem('role')=='SC'?<AddEvent showAlert={showAlert}/>:<></>}
             <h2 className='my-3'>Upcoming Events</h2>
             {upcoming.length>0?upcoming.map((USEvent)=>{
-                return <EventItem text="Register"  showAlert={showAlert} report="" key={USEvent.E_ID} USEvent={USEvent} />
+                return <UpcomingEvents text="Register"  showAlert={showAlert} report="" key={USEvent.E_ID} USEvent={USEvent} />
             }):<p>No upcoming events</p>}
             <h2>Past Events</h2>
             {past.length>0?past.map((USEvent)=>{
-                return <EventItem  text="View Result"   report="View Report" key={USEvent.E_ID} USEvent={USEvent} />
+                return <PastEvents  text="View Result"   report="View Report" key={USEvent.E_ID} USEvent={USEvent} />
             }):<p>No past events</p>}
         </div>
     )
