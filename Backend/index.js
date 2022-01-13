@@ -16,7 +16,7 @@ app.use('/api/auth', require('./routes/auth'))
 app.use('/api/events', require('./routes/events'))
 app.use('/api/result', require('./routes/result'))
 app.use('/api/report', require('./routes/report'))
-app.use('/api/', require('./routes/participated_by'))
+app.use('/api/participation', require('./routes/participated_by'))
 
 
 

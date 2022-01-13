@@ -8,6 +8,7 @@ const EventState = (props) => {
     const host="http://localhost:5000"
     const initialEvent=[]
     const [event, setEvent] = useState(initialEvent)
+    const [pevents, setPevents] = useState([])
     const yourDate = new Date()
     const NewDate = moment(yourDate).format('YYYY-MM-DD')
    
@@ -51,7 +52,7 @@ const EventState = (props) => {
     
     const register=async(E_ID)=>{
 
-      const response = await fetch(`${host}/api/participatedby`, {
+      const response = await fetch(`${host}/api/participation/participatedby`, {
         method: 'POST', 
          headers: {
           'Content-Type': 'application/json',
@@ -63,6 +64,21 @@ const EventState = (props) => {
         console.log(json.USN+" "+E_ID)
 
     }
+
+    const getparticipantevents =async () =>  {
+      //    console.log("token is" + localStorage.getItem('token'))
+      
+          const response = await fetch(`${host}/api/participation/getevents`, {
+            method: 'GET', 
+             headers: {
+              'Content-Type': 'application/json',
+              "auth-token": localStorage.getItem("token")
+            },
+          });
+          const json= await response.json();
+          setPevents(json)
+         
+        }
 
     const setUp=(newEvent)=>{
         setEvent(newEvent)
@@ -111,7 +127,7 @@ const EventState = (props) => {
     }
 
     return (
-        <eventContext.Provider value={{addEvent, upcoming, past,register,deleteEvent,editEvent,getEvents}}>
+        <eventContext.Provider value={{addEvent,getparticipantevents,pevents, upcoming, past,register,deleteEvent,editEvent,getEvents}}>
         {props.children}
       </eventContext.Provider>
     )
