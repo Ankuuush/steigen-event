@@ -45,8 +45,14 @@ const EventState = (props) => {
           },
         });
         const json= await response.json();
-        setEvent(json)
-        setUp(json)
+        let newJson=[]
+        if(localStorage.getItem('role')==='P'){
+          newJson=json.filter((ev)=>ev.Status===1)
+        }
+        else
+        newJson=json
+        setEvent(newJson)
+        setUp(newJson)
        
       }
     
@@ -102,14 +108,14 @@ const EventState = (props) => {
         setUp(newEvent)
     }
 
-    const editEvent=async (id,EName,Description,Location,Time,Date,SUSN)=>{
+    const editEvent=async (id,EName,Description,Location,Time,Date)=>{
         const response = await fetch(`${host}/api/events/editevent/${id}`, {
             method: 'PUT', 
              headers: {
               'Content-Type': 'application/json',
               "auth-token": localStorage.getItem("token")
             },
-            body:JSON.stringify({EName,Description,Location,Time,Date,SUSN})
+            body:JSON.stringify({EName,Description,Location,Time,Date})
           });
         let newEvent=await JSON.parse(JSON.stringify(event))
         for (let index = 0; index < newEvent.length; index++) {

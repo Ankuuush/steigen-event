@@ -9,7 +9,7 @@ const UEvent = (props) => {
     const eventcontext = useContext(eventContext)
     const { deleteEvent, editEvent, register,getparticipantevents,pevents } = eventcontext
 
-    const { USEvent, text, disabled } = props
+    const { USEvent, text, disabled,updateEvent } = props
     const [disable, setDisable] = useState(disabled)
     const [textAlter, setTextAlter] = useState(text)
 
@@ -27,7 +27,7 @@ const UEvent = (props) => {
                 <div className="card-body my-2">
                     <div className="d-flex align-items-baseline">
                         <h5 className="card-title mx-2">{USEvent.EName}</h5>
-                        <i className="fas fa-edit mx-2" onClick={() => { editEvent(USEvent.E_ID, "Kumar", "Sanu ki awaz me", "Bollywood", "12:43:59", "2023-12-03", "1234567809") }}
+                        <i className="fas fa-edit mx-2" onClick={() =>  {updateEvent(USEvent) }}
                             style={{ position: "absolute", right: "2em" }}></i>
                         <i className="fas fa-trash-alt mx-2" onClick={() => { deleteEvent(USEvent.E_ID) }} style={{ position: "absolute", right: "5em" }}></i>
                     </div>
@@ -46,7 +46,7 @@ const UEvent = (props) => {
 
 
 const UpcomingEvents = (props) => {
-    const { pevents, events } = props
+    const { pevents, events,updateEvent } = props
     
 
     let Eventarr = []
@@ -57,13 +57,13 @@ const UpcomingEvents = (props) => {
         for (let pevent = 0; pevent < pevents.length; pevent++) {
             const element = pevents[pevent];
             if (upcomingEvt.E_ID === element.E_ID) {
-                Eventarr.push(<UEvent disabled={true} USEvent={upcomingEvt} key={upcomingEvt.E_ID} text="Registered" />)
+                Eventarr.push(<UEvent disabled={true} updateEvent={updateEvent} USEvent={upcomingEvt} key={upcomingEvt.E_ID} text="Registered" />)
                 count = false;
                 break;
             }
         }
         if (count)
-            Eventarr.push(<UEvent disabled={false} USEvent={upcomingEvt} key={upcomingEvt.E_ID} text="Register" />)
+            Eventarr.push(<UEvent disabled={false} updateEvent={updateEvent} USEvent={upcomingEvt} key={upcomingEvt.E_ID} text="Register" />)
     }
 
     return (
