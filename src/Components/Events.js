@@ -102,7 +102,7 @@ const Events = (props) => {
 
 
             <h2>Past Events</h2>
-            <PastEvents results={results} events={past} getSpecificResult={getSpecificResult} />
+            <PastEvents results={results}  events={past} getSpecificResult={getSpecificResult} />
         </div>
     )
 }

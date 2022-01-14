@@ -8,7 +8,7 @@ const Event = (props) => {
     const { PEvent, text, report, disabled, getSpecificResult } = props;
     let navigate = useNavigate();
     const reportcontext = useContext(reportContext);
-    const { getReport } = reportcontext
+    const { getReport,getReportEvent } = reportcontext
 
 
     const handleClick = () => {
@@ -21,9 +21,12 @@ const Event = (props) => {
 
 
 const handleReportClick = () => {
-
+    if(localStorage.getItem('role')==='SC' && PEvent.Report===0){
+        getReportEvent(PEvent.E_ID)
+        navigate('/createreport')
+    }else{
     getReport(PEvent.E_ID)
-    navigate("/Report")
+    navigate("/Report")}
 }
 
     return (
@@ -39,12 +42,11 @@ const handleReportClick = () => {
                     <p className="card-text mx-2">Location: {PEvent.Location} &emsp; Date: {Moment(PEvent.Date).format('YYYY-MM-DD')} &emsp;
                         Time: {PEvent.Time}  <button  type="button" style={{position:"absolute", right:"2em"}} onClick={() => { handleClick(); }} className="btn btn-success" disabled={disabled} >{text}</button>
                             
-                        <button type="button" disabled={disabled} style={{position:"absolute", right:"10em"}}  onClick={handleReportClick}
-                            className="btn btn-success">{report}</button></p>
+                        {localStorage.getItem('role')==='SC' && PEvent.Report===0 ?<button type="button"  style={{position:"absolute", right:"10em"}}  onClick={handleReportClick}
+                            className="btn btn-success">Create Report</button>: <button type="button" style={{position:"absolute", right:"10em"}}  onClick={handleReportClick}
+                            className="btn btn-success">{report}</button>}</p>
                 </div>
             </div>
-
-
         </div>
     )
 }
@@ -59,12 +61,12 @@ const PastEvents = (props) => {
         let check = false;
         for(let result = 0; result < results.length; ++result) {
             if(events[pastEvt].E_ID === results[result].E_ID) {
-                EventsArr.push(<Event  text="View Result"  report="View Report" key={events[pastEvt].E_ID} PEvent={events[pastEvt]} disabled={false} getSpecificResult={getSpecificResult} />);
+                EventsArr.push(<Event  text="View Result"   report="View Report" key={events[pastEvt].E_ID} PEvent={events[pastEvt]} disabled={false} getSpecificResult={getSpecificResult} />);
                 check = true;
                 break;
             }
         }
-        if(!check) EventsArr.push(<Event  text="View Result"  report="View Report" key={events[pastEvt].E_ID} PEvent={events[pastEvt]} disabled={true} getSpecificResult={getSpecificResult}/>);
+        if(!check) EventsArr.push(<Event  text="View Result"   report="View Report" key={events[pastEvt].E_ID} PEvent={events[pastEvt]} disabled={true} getSpecificResult={getSpecificResult}/>);
     }
     
     return (
