@@ -10,7 +10,6 @@ const CreateReport = () => {
 
     const handleClick=(e)=>{
         e.preventDefault()
-        console.log(reportevnt+" "+text)
         createReport(reportevnt,text)
     }
 

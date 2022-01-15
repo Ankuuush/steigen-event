@@ -21,6 +21,7 @@ import Signup from './Components/Signup';
 import LoginState from './context/Login/LoginState';
 import Login from './Components/Login';
 import CreateReport from './Components/CreateReport';
+import CreateResult from './Components/CreateResult';
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
                 <Route exact path="/About" element={<About />} />
                 <Route exact path="/role" element={<LoginType />} />
                 <Route exact path="/createreport" element={<CreateReport />} />
+                <Route exact path="/createresult" element={<CreateResult />} />
                 <Route exact path="/signin" element={<Login showAlert={showAlert} />} />
                 <Route exact path="/signup" element={<Signup showAlert={showAlert} />} />
               </Routes>

@@ -33,8 +33,21 @@ const ResultState = (props) => {
        
     }
 
+    const createResult=async (USN,E_ID,Marks) =>  {
+        const response = await fetch(`${host}/api/result/createresult`, {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+            "auth-token": localStorage.getItem("token")
+          },
+          body: JSON.stringify({USN,E_ID,Marks})
+        });
+        const json= await response.json();
+        console.log(json)
+      }
+
     return (
-        <resultContext.Provider value={{results,getSpecificResult,getresults}}>
+        <resultContext.Provider value={{results,getSpecificResult,getresults,createResult}}>
             {props.children}
         </resultContext.Provider>
 
