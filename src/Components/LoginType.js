@@ -3,27 +3,29 @@ import { useNavigate } from 'react-router-dom'
 
 
 const LoginType = () => {
-    const navigate=useNavigate();
-    const handleFaculty=()=>{
-        localStorage.setItem('role','F')
-        localStorage.setItem('id','SSN')
+    const navigate = useNavigate();
+    const handleFaculty = () => {
+        localStorage.setItem('role', 'F')
+        localStorage.setItem('id', 'SSN')
         navigate("/signin")
     }
-    const handleParticipants=()=>{
-        localStorage.setItem('role','P')
-        localStorage.setItem('id','USN')
+    const handleParticipants = () => {
+        localStorage.setItem('role', 'P')
+        localStorage.setItem('id', 'USN')
         navigate("/signin")
     }
-    const handleSC=()=>{
-        localStorage.setItem('role','SC')
-        localStorage.setItem('id','USN')
+    const handleSC = () => {
+        localStorage.setItem('role', 'SC')
+        localStorage.setItem('id', 'USN')
         navigate("/signin")
     }
     return (
-        <div>
-            <button onClick={handleFaculty} type="button" className="btn btn-primary">Faculty</button>
-            <button onClick={handleParticipants} type="button" className="btn btn-secondary">Participants</button>
-            <button onClick={handleSC} type="button" className="btn btn-success">Student Coordinator</button>
+        <div className='container' style={{ marginTop: "3em", width: "50vw"}}>
+            <div style={{ display: "flex", justifyContent: "space-between",height:"18em" }}>
+                <button onClick={handleFaculty} style={{ width: "33%",height:"100%" }} type="button" className="btn btn-light"><img style={{ width: "100%",height:"80%" }} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSlzile_cq7nePEYV6WXg9fVTdEw9-xCZ7rn9AsYyc8j7XMK3xUaS15gfbFMYXbnQl0sg&usqp=CAU' /><br />Faculty</button>
+                <button onClick={handleParticipants} style={{ width: "33%",height:"100%" }} type="button" className="btn btn-light"><img style={{ width: "100%",height:"80%" }} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBv3rw1j2p-pE8fKZerdiQK8z0WKFII9W0iA&usqp=CAU' /><br />Participants</button>
+                <button onClick={handleSC} type="button" style={{ width: "33%",height:"100%" }} className="btn btn-light"><img style={{ width: "100%",height:"80%" }} src='https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/16/2021/05/event-risk-assessment.png' /> Student Coordinator</button>
+            </div>
         </div>
     )
 }
