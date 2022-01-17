@@ -33,8 +33,6 @@ const Events = (props) => {
     const updateEvent = (currentEvent) => {
         ref.current.click()
         const date=moment(currentEvent.Date).format("DD-MM-YYYY")
-        console.log(date)
-        console.log(currentEvent)
         setEvent({ id: currentEvent.E_ID, eEName: currentEvent.EName, eLocation: currentEvent.Location, eDate:date  , eTime:currentEvent.Time,eDescription:currentEvent.Description })
         
     }

@@ -7,18 +7,25 @@ import Moment from 'moment'
 const UEvent = (props) => {
     let navigate = useNavigate();
     const eventcontext = useContext(eventContext)
-    const { deleteEvent, editEvent, register,getparticipantevents,pevents } = eventcontext
+    const { deleteEvent, confirmEvent, register } = eventcontext
 
     const { USEvent, text, disabled,updateEvent } = props
     const [disable, setDisable] = useState(disabled)
     const [textAlter, setTextAlter] = useState(text)
+    const [confirmed, setConfirmed] = useState(false)
 
     const handleClick = (e) => {
+        // e.preventDefault();
         setTextAlter("Registered")
         setDisable(true)
         register(USEvent.E_ID)
     }
-
+    const handleConfirmClick=(e)=>{
+        // e.preventDefault();
+        // console.log(USEvent.E_ID)
+        setConfirmed(true)
+        confirmEvent(USEvent.E_ID)
+    }
 
 
     return (
@@ -27,15 +34,16 @@ const UEvent = (props) => {
                 <div className="card-body my-2">
                     <div className="d-flex align-items-baseline">
                         <h5 className="card-title mx-2">{USEvent.EName}</h5>
-                        <i className="fas fa-edit mx-2" onClick={() =>  {updateEvent(USEvent) }}
-                            style={{ position: "absolute", right: "2em" }}></i>
-                        <i className="fas fa-trash-alt mx-2" onClick={() => { deleteEvent(USEvent.E_ID) }} style={{ position: "absolute", right: "5em" }}></i>
+                        {localStorage.getItem('role')==='SC'?<i className="fas fa-edit mx-2"  onClick={() =>  {updateEvent(USEvent) }}
+                            style={{ position: "absolute", right: "5em",cursor:"pointer" }}></i>:null}
+                        {localStorage.getItem('role')!=='P'?<i className="fas fa-trash-alt mx-2" onClick={() => { deleteEvent(USEvent.E_ID) }} style={{ position: "absolute", right: "2em", cursor:"pointer" }}></i>:null}
                     </div>
 
                     <p className="card-text mx-2">{USEvent.Description} </p>
 
                     <p className="card-text mx-2">Location: {USEvent.Location} &emsp; Date: {Moment(USEvent.Date).format('YYYY-MM-DD')} &emsp; Time: {USEvent.Time}
-                        {localStorage.getItem("role") === 'P' ? <button type="button" style={{ position: "absolute", right: "2em" }} disabled={disable} onClick={() => { handleClick(); }} className="btn btn-success">{textAlter}</button> : null}
+                        {localStorage.getItem("role") === 'P' ? <button type="button" style={{ position: "absolute", right: "2em" }} disabled={disable} onClick={() => { handleClick(); }} className="btn btn-success">{textAlter}</button> :
+                        localStorage.getItem('role')==='F' && USEvent.Status===0?<button type="button" style={{ position: "absolute", right: "2em" }} disabled={confirmed}  onClick={() => { handleConfirmClick(); }} className="btn btn-success">Confirm</button>: null}
                     </p>
                 </div>
             </div>

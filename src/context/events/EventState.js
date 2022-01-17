@@ -109,6 +109,7 @@ const EventState = (props) => {
     }
 
     const editEvent=async (id,EName,Description,Location,Time,Date)=>{
+      console.log(id)
         const response = await fetch(`${host}/api/events/editevent/${id}`, {
             method: 'PUT', 
              headers: {
@@ -132,8 +133,20 @@ const EventState = (props) => {
         setUp(newEvent)
     }
 
+    const confirmEvent= async (id)=>{
+
+        const response = await fetch(`${host}/api/events/confirmevent/${id}`, {
+            method: 'PATCH', 
+             headers: {
+              'Content-Type': 'application/json',
+              "auth-token": localStorage.getItem("token")
+            },
+          });
+        const json=await response.json();
+    }
+
     return (
-        <eventContext.Provider value={{addEvent,getparticipantevents,pevents, upcoming, past,register,deleteEvent,editEvent,getEvents}}>
+        <eventContext.Provider value={{addEvent,getparticipantevents,pevents, upcoming, past,register,deleteEvent,editEvent,getEvents,confirmEvent}}>
         {props.children}
       </eventContext.Provider>
     )

@@ -52,9 +52,8 @@ router.post('/addevent',fetchuser,async(req,res)=>{
 router.put('/editevent/:id',fetchuser,async(req,res)=>{
     try{
     const {EName,Location,Time,Date,Description}=req.body;
-    let Status=0;
     //TODO: use regex to match faculty SSN and update status to 1 
-    let sql=`update events set EName='${EName}', Location='${Location}',Time='${Time}',Date='${Date}',SUSN='${req.user.id}',SSN=null,Status=${Status},Description='${Description}'
+    let sql=`update events set EName='${EName}', Location='${Location}',Time='${Time}',Date='${Date}',SUSN='${req.user.id}',SSN=null,Status=0,Description='${Description}'
     where E_ID=${req.params.id}`
     db.query(sql,(err,result)=>{
         if(err)
@@ -68,6 +67,24 @@ router.put('/editevent/:id',fetchuser,async(req,res)=>{
     console.error(error.message);
     res.status(500).send("Internal server error");
   }
+
+});
+
+router.patch('/confirmevent/:id',fetchuser,async(req,res)=>{
+  try{
+  let sql=`update events set Status=1, SSN=${req.user.id} where E_ID=${req.params.id};`
+  db.query(sql,(err,result)=>{
+      if(err)
+      {
+        console.log(err)
+       return res.status(500).send("Internal server error");    
+      }  
+              res.send(result);
+  })
+} catch (error) {
+  console.error(error.message);
+  res.status(500).send("Internal server error");
+}
 
 });
 
