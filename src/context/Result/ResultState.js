@@ -6,6 +6,7 @@ import resultContext from './ResultContext'
 const ResultState = (props) => {
     const host="http://localhost:5000"
     const [results, setResults] = useState([])
+    const [evntID, setevntID ] = useState()
 
     const getresults=async()=>{
         const response = await fetch(`${host}/api/result/getresult`, {
@@ -47,7 +48,7 @@ const ResultState = (props) => {
       }
 
     return (
-        <resultContext.Provider value={{results,getSpecificResult,getresults,createResult}}>
+        <resultContext.Provider value={{results,getSpecificResult,getresults,createResult,setevntID,evntID}}>
             {props.children}
         </resultContext.Provider>
 

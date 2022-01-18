@@ -13,7 +13,7 @@ router.post("/createresult",fetchuser,async (req,res)=>{
                 console.log(err)
                 return res.status(500).send("Internal server error")
             }
-            let sql=`update events set Result=1 where E_ID=${E_ID};`
+            let sql=`update events set Result=Result+1 where E_ID=${E_ID};`
             db.query(sql,async (err,result)=>{
               if(err){
                   console.log(err)

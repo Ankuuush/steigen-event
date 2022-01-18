@@ -12,7 +12,7 @@ const Events = (props) => {
     const eventcontext = useContext(eventContext)
     const { upcoming, past, getEvents, getparticipantevents, pevents,editEvent } = eventcontext
     const resultcontext = useContext(resultContext)
-    const { getSpecificResult, results, getresults } = resultcontext
+    const { getSpecificResult, results, getresults,setevntID } = resultcontext
     const { showAlert } = props
 
     let navigate = useNavigate();
@@ -34,7 +34,6 @@ const Events = (props) => {
         ref.current.click()
         const date=moment(currentEvent.Date).format("DD-MM-YYYY")
         setEvent({ id: currentEvent.E_ID, eEName: currentEvent.EName, eLocation: currentEvent.Location, eDate:date  , eTime:currentEvent.Time,eDescription:currentEvent.Description })
-        
     }
     const handleClick = (e) => {
         editEvent(event.id,event.eEName,event.eDescription,event.eLocation,event.eTime,event.eDate)
@@ -97,10 +96,11 @@ const Events = (props) => {
             {/* {upcoming.length>0?upcoming.map((USEvent)=>{
                 return <UpcomingEvents text="Register"   report="" key={USEvent.E_ID} USEvent={USEvent} />
             }):<p>No upcoming events</p>} */}
+            <div style={{borderBottom:"2px solid black"}}></div>
 
 
-            <h2>Past Events</h2>
-            <PastEvents results={results}  events={past} getSpecificResult={getSpecificResult} />
+            <h2 style={{marginTop:"3em"}}>Past Events</h2>
+            <PastEvents results={results}  events={past} getSpecificResult={getSpecificResult} setevntID={setevntID}/>
         </div>
     )
 }
