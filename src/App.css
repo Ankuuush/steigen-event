@@ -65,6 +65,23 @@ footer div{
   text-decoration: underline;
 }
 
+.form_sign{
+  margin-top: 4em;
+  margin-bottom: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
+.border_sign{
+  border-radius: 35px 35px 35px 35px;
+-moz-border-radius: 35px 35px 35px 35px;
+-webkit-border-radius: 35px 35px 35px 35px;
+border: 0px solid rgba(0,0,0,1);
+-webkit-box-shadow: 0px 4px 26px 0px rgba(0,0,0,1);
+-moz-box-shadow: 0px 4px 26px 0px rgba(0,0,0,1);
+box-shadow: 0px 4px 26px 0px rgba(0,0,0,1);
+}
 
 

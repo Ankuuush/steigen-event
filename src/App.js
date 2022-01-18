@@ -51,8 +51,8 @@ function App() {
                 <Route exact path="/Report" element={<Report />} />
                 <Route exact path="/About" element={<About />} />
                 <Route exact path="/role" element={<LoginType />} />
-                <Route exact path="/createreport" element={<CreateReport />} />
-                <Route exact path="/createresult" element={<CreateResult />} />
+                <Route exact path="/createreport" element={<CreateReport showAlert={showAlert} />} />
+                <Route exact path="/createresult" element={<CreateResult showAlert={showAlert} />} />
                 <Route exact path="/signin" element={<Login showAlert={showAlert} />} />
                 <Route exact path="/signup" element={<Signup showAlert={showAlert} />} />
               </Routes>

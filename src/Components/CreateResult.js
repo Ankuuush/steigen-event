@@ -2,14 +2,14 @@ import React, { useContext, useState } from 'react'
 import resultContext from '../context/Result/ResultContext'
 
 
-const CreateResult = () => {
+const CreateResult = (props) => {
     const context = useContext(resultContext)
     const {createResult}=context
     const [result, setResult] = useState({USN:"",E_ID:"",Marks:""})
     const handleClick=(e)=>{
         e.preventDefault();
         createResult(result.USN,result.E_ID,result.Marks)
-        // props.showAlert("Added Successfully","success")
+        props.showAlert("Result Created Successfully","success")
         setResult({USN:"",E_ID:"",Marks:""})
     }
 

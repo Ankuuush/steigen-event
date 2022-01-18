@@ -32,40 +32,43 @@ const Signup = (props) => {
     }
 
     return (
-        <div className="container">
-            <div className="my-3">
+        <div className='form_sign'>
+            <div className="my-3" className='border_sign' style={{padding:"2em"}}>
                 <h1>Sign Up</h1>
-            </div>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
+            
+            <form onSubmit={handleSubmit} style={{width:"40em"}}>
+            <div style={{display:"flex",justifyContent:"space-between"}}>
+                <div className="mb-3" style={{width:"45%"}}>
                     <label htmlFor="name" className="form-label">Name</label>
                     <input type="text" className="form-control" id="name" name='name' onChange={onChange} aria-describedby="emailHelp"/>
                 </div>
-                <div className="mb-3">
+                <div className="mb-3" style={{width:"45%"}}>
                     <label htmlFor="USN" className="form-label">USN</label>
                     <input type="text" className="form-control" id="USN" name='USN' onChange={onChange} aria-describedby="emailHelp"/>
-                </div>
+                </div></div>
+                
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
                     <input type="email" className="form-control" id="email" name='email' onChange={onChange} aria-describedby="emailHelp"/>
                         <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div className="mb-3">
+                </div><div style={{display:"flex",justifyContent:"space-between"}}>
+                <div className="mb-3" style={{width:"45%"}}>
                     <label htmlFor="Phone" className="form-label">Phone No</label>
                     <input type="text" className="form-control" id="Phone" name='Phone' onChange={onChange} aria-describedby="emailHelp"/>
                 </div>
-                <div className="mb-3">
+                <div className="mb-3" style={{width:"45%"}}>
                     <label htmlFor="Sex" className="form-label">Sex</label>
                     <input type="text" className="form-control" id="Sex" name='Sex' onChange={onChange} aria-describedby="emailHelp"/>
-                </div>
-                <div className="mb-3">
+                </div></div>
+                <div style={{display:"flex",justifyContent:"space-between"}}>
+                <div className="mb-3"  style={{width:"45%"}} >
                     <label htmlFor="Branch" className="form-label">Branch</label>
                     <input type="text" className="form-control" id="Branch" name='Branch' onChange={onChange} aria-describedby="emailHelp"/>
                 </div>
-                <div className="mb-3">
+                <div className="mb-3" style={{width:"45%"}}>
                     <label htmlFor="Sem" className="form-label">Sem</label>
                     <input type="text" className="form-control" id="Sem" name='Sem' onChange={onChange} aria-describedby="emailHelp"/>
-                </div>
+                </div></div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
                     <input type="password" className="form-control" id="password" name='password' onChange={onChange} minLength={6} required/>
@@ -77,6 +80,7 @@ const Signup = (props) => {
                 
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
+            </div>
         </div>
 
     )

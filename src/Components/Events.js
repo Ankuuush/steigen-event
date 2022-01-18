@@ -38,7 +38,7 @@ const Events = (props) => {
     }
     const handleClick = (e) => {
         editEvent(event.id,event.eEName,event.eDescription,event.eLocation,event.eTime,event.eDate)
-        props.showAlert("Updated Successfully","success")
+        showAlert("Updated Successfully","success")
         refClose.current.click()
     }
 
