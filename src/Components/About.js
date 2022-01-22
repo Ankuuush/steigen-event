@@ -2,20 +2,22 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const About = () => {
-    let navigate=useNavigate();
+    let navigate = useNavigate();
     useEffect(() => {
-        if(!localStorage.getItem('token'))
-        navigate('/role');
+        if (!localStorage.getItem('token'))
+            navigate('/role');
     }, [])
     return (
         <div className='container my-3'>
-            <h2 style={{display:"flex",justifyContent:"center"}}>About Us</h2>
-            <p style={{display:"flex",justifyContent:"center"}}>This is about us.Lorem Ipsum is simply dummy text 
-            of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-            since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-             book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
-            essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem
-            Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <h2 style={{ display: "flex", justifyContent: "center",textDecoration:"underline" }}>About Us</h2>
+            <p style={{ display: "flex", justifyContent: "center",marginTop:"2em" }}>The Steigen event of Information Science and Engineering
+                Department of Acharya Institute of technology is a student forum activity incorporated by the college and
+                the ISE faculty to provide students exposure to the multiple activities that bring all around development
+                of the students. It provides plethora of opportunities for the students to participate among the each other
+                and work in a competitive environment to develop Essential skills for IT industry. Every Thursday there are
+                various activities like hackathon , webinars , seminars etc for the students to develop skill. </p>
+            <p>One thing that makes the event easy is for students to participate in a forum develop skills and get
+                certificates from the department of ISE which gives your profie a better opportunity for the success!</p>
         </div>
     )
 }
