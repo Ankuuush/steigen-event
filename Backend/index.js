@@ -18,7 +18,12 @@ app.use('/api/result', require('./routes/result'))
 app.use('/api/report', require('./routes/report'))
 app.use('/api/participation', require('./routes/participated_by'))
 
-
+db.query('drop trigger if exists set_result;')
+db.query('create trigger set_result '+
+'AFTER INSERT ON result '+
+'for each row '+
+'begin '+
+'update events set Result=Result+1 where E_ID=new.E_ID; End;')
 
 app.listen(port,()=>{
     console.log('Server running on port https://localhost:5000')
