@@ -24,7 +24,7 @@ const Report = () => {
         <div className='container my-2' >
         <div id='divToPrint' className="container" style={{display:"flex",flexDirection:"column",justifyContent:"center",width:"60em"}}>
             <h1 style={{display:"flex",justifyContent:"center"}}>{reports[0].EName}</h1>
-            <p className='border_report' >{reports[0].Report}</p>
+            <p className='border_report' >{reports[0][0].Report}</p>
         </div>
         <button onClick={printDocument} style={{position:"relative", left:"55em"}} type="button" class="btn btn-outline-primary my-2">Generate PDF</button>
         </div>

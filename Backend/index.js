@@ -29,3 +29,10 @@ app.listen(port,()=>{
     console.log('Server running on port https://localhost:5000')
 })
 
+db.query('drop procedure if exists get_report;')
+db.query("CREATE PROCEDURE get_report("+
+'EvntID int) '+
+'BEGIN '+
+'Select r.E_ID,r.Report,r.USN,e.EName from report r join events e using(E_ID) where E_ID=EvntID; '+
+'END')
+
